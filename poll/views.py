@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect, HttpResponse
-#from django.shortcuts import redirect
 from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -17,13 +16,11 @@ def home(request):
     }
     return render(request, 'poll/home.html', context)
 
-
+#To create new poll
 def create(request):
+    #If user is not logged in
     if request.user.is_anonymous:
-        #return render(request, "poll/home.html")
-        #return redirect("/")
         return render(request, 'poll/login.html')
-
 
     if request.method == 'POST':
         form = CreatePollForm(request.POST)
